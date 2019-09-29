@@ -1,29 +1,33 @@
 <template>
-  <el-table
-    :data="tableData"
-    style="width: 100%">
-    <el-table-column
-      prop="date"
-      label="日期"
-      width="180">
-    </el-table-column>
-    <el-table-column
-      prop="name"
-      label="姓名"
-      width="180">
-    </el-table-column>
-    <el-table-column
-      prop="address"
-      label="地址">
-    </el-table-column>
-  </el-table>
+  <div>
+    <router-link to="login" replace><el-button>跳转</el-button></router-link>
+    <a href="http://www.baidu.com">我是一个超链接<span>我是里面的</span></a>
+    <el-table
+      :data="tableData"
+      style="width: 100%">
+      <el-table-column
+        prop="date"
+        label="日期"
+        width="180">
+      </el-table-column>
+      <el-table-column
+        prop="name"
+        label="姓名"
+        width="180">
+      </el-table-column>
+      <el-table-column
+        prop="address"
+        label="地址">
+      </el-table-column>
+    </el-table>
+  </div>
 </template>
 
 <script>
 import { demo03 } from '../api/api'
 
 export default {
-  name: 'HelloWorld',
+  name: 'Logout',
   mounted() {
     demo03().then((response) => {
       console.log('response:', response)
@@ -57,5 +61,13 @@ export default {
 <style lang="scss">
 .aaa{
   color:red;
+}
+a{
+  border:1px solid #000;
+  border-radius: 4px;
+  span{
+    transform:translate(10px, 10px);
+    color:red;
+  }
 }
 </style>

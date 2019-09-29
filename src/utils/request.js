@@ -10,24 +10,24 @@ const service = axios.create({
 })
 
 service.interceptors.request.use(
-  config => {
-    console.log('request-config:',config)
+  (config) => {
+    console.log('request-config:', config)
     return config
   },
-  error => {
+  (error) => {
     console.log(error)
     return Promise.reject(error)
   }
 )
 
 service.interceptors.response.use(
-  response => {
-    console.log('response-config:',response)
+  (response) => {
+    console.log('response-config:', response)
     // 访问接口成功后的code码需要全公司统一，用来统一处理每个code对应的策略
     return response
   },
-  error => {
-    console.log('err' + error)
+  (error) => {
+    console.log('err', error)
     return Promise.reject(error)
   }
 )

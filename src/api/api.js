@@ -5,7 +5,7 @@ export function demo01(obj) {
   return request({
     url: '/demo01',
     method: 'post',
-    data:obj
+    data: obj
   })
 }
 
