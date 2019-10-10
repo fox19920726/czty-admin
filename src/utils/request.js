@@ -1,17 +1,22 @@
+import { Message } from 'element-ui'
 import axios from 'axios'
-// import { Message } from 'element-ui'
-// import store from '@/store'
-// import Cookies from 'js-cookie'
-// import router from '@/router'
+// import router from '../router'
+import { getToken } from './auth'
 
 const service = axios.create({
-  // baseURL: process.env.BASE_API, // api 的 base_url需要配置代理的url字符串
+  baseURL: process.env.BASE_URL,
   timeout: 10000
 })
 
+
 service.interceptors.request.use(
   (config) => {
-    console.log('request-config:', config)
+    const token = getToken()
+
+    if (token) {
+      config.headers['X-Token'] = token
+    }
+    // console.log('request-config:', config)
     return config
   },
   (error) => {
@@ -27,7 +32,13 @@ service.interceptors.response.use(
     return response
   },
   (error) => {
-    console.log('err', error)
+    const response = error.response
+    const status = response.status
+    const errmsg = response.data.errmsg
+    if (status === 401) {
+      // 未登录状态下应该：1、提示未登录 2、删除本地cookie的token记录 3、跳转至登陆界面
+      Message.error(errmsg)
+    }
     return Promise.reject(error)
   }
 )

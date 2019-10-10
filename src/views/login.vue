@@ -20,18 +20,31 @@
         label="地址">
       </el-table-column>
     </el-table>
+    <i class="iconfont iconpingdiguot"></i>
+    <i class="el-icon-edit"></i>
   </div>
 </template>
 
 <script>
-import { demo03 } from '../api/api'
+import { login, getAllOverview } from '../api/api'
+import {
+  setToken,
+  setRoleId
+} from '../utils/auth'
 
 export default {
   name: 'Login',
   mounted() {
-    demo03().then((response) => {
-      console.log('response:', response)
+    login('', '').then((response) => {
+      const data = response.data.data
+
+      this.$store.commit('SET_TOKEN', {
+        token: data.token
+      })
+      setToken(data.token);
+      setRoleId(data.roleId);
     })
+    getAllOverview()
   },
   data() {
     return {

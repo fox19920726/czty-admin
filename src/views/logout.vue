@@ -24,12 +24,12 @@
 </template>
 
 <script>
-import { demo03 } from '../api/api'
+import { login } from '../api/api'
 
 export default {
   name: 'Logout',
   mounted() {
-    demo03().then((response) => {
+    login().then((response) => {
       console.log('response:', response)
     })
   },
@@ -65,6 +65,7 @@ export default {
 a{
   border:1px solid #000;
   border-radius: 4px;
+  display: flex;
   span{
     transform:translate(10px, 10px);
     color:red;
