@@ -8,6 +8,9 @@ module.exports = {
     }
 	},
   url:{
+    pub:{
+      baseUrl:'http://192.168.110.210212:8080'
+    },
     dev:{
       baseUrl:'http://192.168.110.210:8080'
     },

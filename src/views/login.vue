@@ -26,11 +26,11 @@
 </template>
 
 <script>
-import { login, getAllOverview } from '../api/api'
+import { login, getAllOverview } from '@/api/api'
 import {
   setToken,
   setRoleId
-} from '../utils/auth'
+} from '@/utils/auth'
 
 export default {
   name: 'Login',

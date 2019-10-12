@@ -1,4 +1,4 @@
-import request from '../utils/request'
+import request from '@/utils/request'
 
 const md5 = require('js-md5');
 const bcrypt = require('bcryptjs');

@@ -1,13 +1,12 @@
 import { Message } from 'element-ui'
 import axios from 'axios'
-// import router from '../router'
+// import router from '@/router'
 import { getToken } from './auth'
 
 const service = axios.create({
   baseURL: process.env.BASE_URL,
   timeout: 10000
 })
-
 
 service.interceptors.request.use(
   (config) => {
