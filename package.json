@@ -65,7 +65,8 @@
       "prefer-rest-params": 0,
       "import/no-unresolved": 0,
       "no-param-reassign": 0,
-      "prefer-destructuring": 0
+      "prefer-destructuring": 0,
+      "linebreak-style": 0
     }
   },
   "postcss": {
