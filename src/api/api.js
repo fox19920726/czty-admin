@@ -20,12 +20,14 @@ export function demo02(token) {
 }
 
 export function login(username, password) {
+  const hash = md5(password)
+
   return request({
     url: '/login',
     method: 'post',
     data: {
       username: username.trim(),
-      password: md5(password)
+      password: hash
     }
   })
 }
