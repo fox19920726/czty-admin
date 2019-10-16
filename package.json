@@ -19,12 +19,12 @@
   },
   "homepage": "https://github.com/fox19920726/czty-admin#readme",
   "devDependencies": {
-    "core-js": "^3.3.2",
     "czty-eslint": "0.0.6",
     "czty-script": "^0.4.6",
-    "regenerator-runtime": "^0.13.3"
   },
   "dependencies": {
+    "core-js": "^3.3.2",
+    "regenerator-runtime": "^0.13.3",
     "autoprefixer": "^9.6.1",
     "axios": "^0.19.0",
     "element-ui": "^2.12.0",
