@@ -20,12 +20,11 @@
   "homepage": "https://github.com/fox19920726/czty-admin#readme",
   "devDependencies": {
     "czty-eslint": "0.0.6",
-    "czty-script": "^0.4.1"
+    "czty-script": "^0.4.4"
   },
   "dependencies": {
     "autoprefixer": "^9.6.1",
     "axios": "^0.19.0",
-    "core-js": "^2.6.10",
     "element-ui": "^2.12.0",
     "js-cookie": "^2.2.1",
     "js-md5": "^0.7.3",
