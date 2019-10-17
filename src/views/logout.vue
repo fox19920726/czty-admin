@@ -1,7 +1,7 @@
 <template>
   <div>
-    <router-link to="login" replace><el-button>跳转</el-button></router-link>
-    <a href="http://www.baidu.com">我是一个超链接<span>我是里面的</span></a>
+    <router-link to="login" replace>跳转</router-link>
+    <el-button>提交</el-button>
     <el-table
       :data="tableData"
       style="width: 100%">

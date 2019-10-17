@@ -1,7 +1,9 @@
 <template>
   <div>
-    <router-link to="logout" replace><el-button>跳转</el-button></router-link>
-    <img src="./../images/logo.png" />
+    <router-link to="logout" replace>跳转</router-link>
+    <el-button>提交</el-button>
+    <i class="iconfont iconpingdiguot"></i>
+    <i class="el-icon-edit"></i>
     <el-table
       :data="tableData"
       style="width: 100%">
@@ -20,8 +22,7 @@
         label="地址">
       </el-table-column>
     </el-table>
-    <i class="iconfont iconpingdiguot"></i>
-    <i class="el-icon-edit"></i>
+    <img src="./../images/logo.png" />
   </div>
 </template>
 
