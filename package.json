@@ -20,7 +20,7 @@
   "homepage": "https://github.com/fox19920726/czty-admin#readme",
   "devDependencies": {
     "czty-eslint": "0.0.6",
-    "czty-script": "^0.4.6",
+    "czty-script": "^0.4.6"
   },
   "dependencies": {
     "core-js": "^3.3.2",
