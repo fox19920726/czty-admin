@@ -28,6 +28,9 @@ import App from './App.vue'
 // iconfont
 import './iconfont/iconfont.css'
 
+// reset css
+import '@/styles/index.scss'
+
 Vue.prototype.qs = QS;
 Vue.prototype.$axios = axios;
 Vue.use(ElementUI);
