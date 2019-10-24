@@ -23,7 +23,7 @@ import 'element-ui/lib/theme-chalk/index.css'
 import App from './App.vue'
 
 // mock模块
-// import './mock'
+import './mock'
 
 // iconfont
 import './iconfont/iconfont.css'

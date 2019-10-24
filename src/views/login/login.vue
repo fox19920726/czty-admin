@@ -16,10 +16,8 @@
 
 <script>
 import { login } from '@/api/api'
-import {
-  setToken,
-  setRoleId
-} from '@/utils/auth'
+import router from '@/router'
+import { setToken } from '@/utils/auth'
 
 export default {
   name: 'Login',
@@ -65,12 +63,8 @@ export default {
 
           login(name, password).then((response) => {
             const data = response.data.data
-
-            this.$store.commit('SET_TOKEN', {
-              token: data.token
-            })
-            setToken(data.token);
-            setRoleId(data.roleId);
+            setToken(data.token)
+            router.push('/')
           })
         } else {
           console.log('error submit!!')

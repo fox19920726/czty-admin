@@ -19,6 +19,7 @@ export function demo02(token) {
   })
 }
 
+// 登录
 export function login(username, password) {
   const hash = md5(password)
 
@@ -32,16 +33,27 @@ export function login(username, password) {
   })
 }
 
-export function getAllOverview() {
-  return request({
-    url: '/getAllOverview',
-    method: 'get'
-  })
-}
-
+// 系统版本号
 export function versionList() {
   return request({
     url: '/version/list',
     method: 'get'
+  })
+}
+
+// 请求异步路由
+export function getRouters() {
+  return request({
+    url: '/getRouters',
+    method: 'get'
+  })
+}
+
+// 用户信息
+export function getUserInfo(token) {
+  return request({
+    url: '/user/info',
+    method: 'get',
+    params: token
   })
 }

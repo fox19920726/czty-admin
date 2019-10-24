@@ -25,11 +25,9 @@ service.interceptors.request.use(
 )
 
 service.interceptors.response.use(
-  (response) => {
-    console.log('response-config:', response)
-    // 访问接口成功后的code码需要全公司统一，用来统一处理每个code对应的策略
-    return response
-  },
+  // console.log('response-config:', response)
+  // 访问接口成功后的code码需要全公司统一，用来统一处理每个code对应的策略
+  (response) => response,
   (error) => {
     const response = error.response
     const status = response.status

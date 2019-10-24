@@ -1,71 +1,59 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import Menu from '@/views/menu/menu'
-import Login from '@/views/login/login'
-import Dashboard from '@/views/dashboard/dashboard'
-import Layout from '@/views/layout/layout'
+import NProgress from 'nprogress'
+import 'nprogress/nprogress.css'
+import store from '@/store'
+import routes from './routeList'
+import { getToken } from '@/utils/auth'
 
 Vue.use(VueRouter)
-
-const routes = [
-  {
-    path: '/login',
-    component: Login,
-    hidden: true,
-    name: '01'
-  },
-  {
-    path: '/test',
-    component: Layout,
-    meta: { title: '我是一级', icon: 'location', el: true },
-    name: '02',
-    children: [
-      {
-        path: 'configer',
-        component: Menu,
-        meta: { title: '我是二级', icon: 'iconpingdiguot', el: false },
-        name: '03',
-        children: [
-          {
-            path: 'login',
-            component: Login,
-            meta: { title: '我是三级', icon: 'location', el: true },
-            name: '04'
-          },
-          {
-            path: 'aaaaaa',
-            component: Menu,
-            meta: { title: '我是也3级', icon: 'location', el: true },
-            name: '05',
-            children: [
-              {
-                path: 'bbbbb',
-                component: Dashboard,
-                name: '06',
-                meta: { title: '我是4级', icon: 'location', el: true },
-              },
-              {
-                path: 'http://baidu.com',
-                name: '07',
-                meta: { title: '我也是4级', icon: 'location', el: true }
-              }
-            ]
-          }
-        ]
-      },
-      {
-        path: 'dashboard',
-        component: Dashboard,
-        name: '08',
-        meta: { title: '我是2.1级', icon: 'location', el: true }
-      }
-    ]
-  }
-]
+NProgress.configure({ showSpinner: false })
 
 const router = new VueRouter({
   linkActiveClass: 'active',
   routes
-});
+})
+const whiteList = ['/login', '/success', '/fail', '/register', '/checkUserName']
+
+/*
+* 1、检查是否登录
+* 2、如果登录了，访问login就直接定位到/
+* 3、合并本地路由与异步路由(路由权限就是这个步骤)
+* 4、如果没有登录，就去判断访问的是否是白名单中的路由
+* 5、如果是白名单中的，就直接访问，否则就重定向到登陆页面
+* 6、判断token是为了防止左侧导航多次加载，导致router重复而出告警
+*/
+
+router.beforeEach((to, from, next) => {
+  NProgress.start()
+  if (getToken()) {
+    if (to.path === '/login') {
+      next('/')
+      NProgress.done()
+      return
+    }
+    // 如果已经拉倒用户资料了，就不需要再访问了
+    if (!store.getters.token) {
+      store.dispatch('getUserInfoAction').then(() => {
+        store.dispatch('getAsynRoutes').then(() => {
+          router.addRoutes(store.getters.addRouters)
+          next({ ...to, replace: true })
+        })
+      })
+    }
+    next()
+    return
+  }
+  if (whiteList.indexOf(to.path) !== -1) {
+    next()
+    return
+  }
+  next('/login')
+  NProgress.done()
+})
+
+router.afterEach(() => {
+  NProgress.done()
+})
 
 export default router;

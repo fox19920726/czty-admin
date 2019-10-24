@@ -24,15 +24,9 @@
 </template>
 
 <script>
-import { login } from '@/api/api'
 
 export default {
   name: 'Logout',
-  mounted() {
-    login('', '').then((response) => {
-      console.log('response:', response)
-    })
-  },
   data() {
     return {
       tableData: [{

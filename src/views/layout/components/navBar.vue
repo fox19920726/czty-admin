@@ -7,7 +7,7 @@
       :unique-opened="true"
     >
       <ItemBar
-        v-for="item in $router.options.routes"
+        v-for="item in routers"
         :key="item.path"
         :item="item"
         :base-path="item.path"
@@ -23,6 +23,11 @@ export default {
   name: 'NavBar',
   components: {
     ItemBar
+  },
+  computed: {
+    routers() {
+      return this.$store.getters.routers
+    }
   }
 }
 </script>
