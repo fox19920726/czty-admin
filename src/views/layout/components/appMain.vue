@@ -1,7 +1,7 @@
 <template>
   <div class="app-wrapper">
     <transition name="fade-transform" mode="out-in">
-      <keep-alive>
+      <keep-alive :include="cachedViews">
         <router-view :key="$route.name"/>
       </keep-alive>
     </transition>
@@ -12,7 +12,10 @@
 
 export default {
   name: 'AppMain',
-  methods: {
+  computed: {
+    cachedViews() {
+      return this.$store.getters.cachedViews
+    }
   }
 }
 </script>

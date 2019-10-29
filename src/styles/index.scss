@@ -1,3 +1,5 @@
+@import './transition.scss';
+
 html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
 a, abbr, acronym, address, big, cite, code,
@@ -60,6 +62,7 @@ html {
 #app {
   height: 100%;
   min-width:1080px;
+  color: $fontGray;
 }
 
 *,
@@ -67,7 +70,9 @@ html {
 *:after {
   box-sizing: inherit;
 }
-
+.el-menu-item,.el-submenu__title{
+  color: $fontGray;
+}
 .no-padding {
   padding: 0px !important;
 }

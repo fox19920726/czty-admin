@@ -26,7 +26,7 @@
 <script>
 
 export default {
-  name: 'Logout',
+  name: 'Dashboard',
   data() {
     return {
       tableData: [{

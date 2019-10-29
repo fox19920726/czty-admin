@@ -17,5 +17,6 @@ module.exports = {
     start:{
       baseUrl:''
     }
-  }
+  },
+  sassGlobal:['color.scss','transition.scss']
 }

@@ -7,6 +7,7 @@
           <NavBar />
         </el-aside>
         <el-main>
+          <TagView />
           <AppMain />
         </el-main>
       </el-container>
@@ -16,13 +17,15 @@
 
 <script>
 import NavBar from './components/navBar'
+import TagView from './components/tagView'
 import AppMain from './components/appMain'
 
 export default {
   name: 'Layout',
   components: {
     NavBar,
-    AppMain
+    AppMain,
+    TagView
   },
   methods: {
   }
@@ -30,4 +33,7 @@ export default {
 </script>
 
 <style lang="scss">
+.el-header{
+  background: $headerBg;
+}
 </style>

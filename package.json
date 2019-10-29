@@ -20,7 +20,7 @@
   "homepage": "https://github.com/fox19920726/czty-admin#readme",
   "devDependencies": {
     "czty-eslint": "0.0.6",
-    "czty-script": "^0.4.6"
+    "czty-script": "^0.4.9"
   },
   "dependencies": {
     "autoprefixer": "^9.6.1",
@@ -68,7 +68,8 @@
       "import/no-unresolved": 0,
       "no-param-reassign": 0,
       "prefer-destructuring": 0,
-      "linebreak-style": 0
+      "linebreak-style": 0,
+      "no-restricted-syntax": 0
     }
   },
   "postcss": {
