@@ -3,8 +3,12 @@ import axios from 'axios'
 // import router from '@/router'
 import { getToken } from './auth'
 
+const isProduction = process.env.NODE_ENV === 'production'
+const originBaseUrl = process.env.BASE_URL
+const isBaseUrl = window.g.BASE_URL || originBaseUrl
+
 const service = axios.create({
-  baseURL: process.env.BASE_URL,
+  baseURL: isProduction ? isBaseUrl : process.env.BASE_URL,
   timeout: 10000
 })
 
@@ -25,9 +29,11 @@ service.interceptors.request.use(
 )
 
 service.interceptors.response.use(
-  // console.log('response-config:', response)
-  // 访问接口成功后的code码需要全公司统一，用来统一处理每个code对应的策略
-  (response) => response,
+  (response) => {
+    console.log('response-config:', response)
+    // 访问接口成功后的code码需要全公司统一，用来统一处理每个code对应的策略
+    return response
+  },
   (error) => {
     const response = error.response
     const status = response.status

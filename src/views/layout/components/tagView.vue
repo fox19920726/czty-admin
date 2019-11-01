@@ -1,8 +1,15 @@
 <template>
-  <div class="app-wrapper">
+  <div class="wrapper-tag">
+    <i
+      :class="'han-bao-bao ' + (isCollapse?'el-icon-s-unfold':'el-icon-s-fold')"
+      @click="toggleNavBar"
+    ></i>
     <el-scrollbar
       class="tagview-scroll-container"
+      ref="scrollContainer"
       :vertical="false"
+      :native="false"
+      @wheel.native.prevent="handleScroll"
     >
       <router-link
         v-for="item in visitedViews"
@@ -50,6 +57,12 @@ export default {
     },
     routers() {
       return this.$store.getters.routers
+    },
+    scrollWrapper() {
+      return this.$refs.scrollContainer.$refs.wrap
+    },
+    isCollapse() {
+      return this.$store.getters.isCollapse
     }
   },
   mounted() {
@@ -69,6 +82,15 @@ export default {
     }
   },
   methods: {
+    toggleNavBar() {
+      const isCollapse = !this.isCollapse
+      this.$store.commit('SET_NAV_SATAE', isCollapse)
+    },
+    handleScroll(e) {
+      const eventDelta = e.wheelDelta || -e.deltaY * 40
+      const $scrollWrapper = this.scrollWrapper
+      $scrollWrapper.scrollLeft += eventDelta / 4
+    },
     initTags() {
       this.$store.dispatch('addVisitedView', {
         path: '/dashboard',
@@ -100,8 +122,9 @@ export default {
       })
     },
     openMenu(tag, e) {
-      this.left = e.clientX
-      this.top = e.clientY + 15;
+      console.log('e:', e)
+      this.left = e.clientX - 260
+      this.top = e.clientY - 40
       this.visible = true
       this.selectedTag = tag
     },
@@ -131,66 +154,87 @@ export default {
 }
 </script>
 
-<style lang="scss" scoped="true">
-.tagview-scroll-container {
-  white-space: nowrap;
-  position: relative;
-  overflow: hidden;
+<style lang="scss">
+.wrapper-tag{
+  padding: 8px;
+  border-bottom: 1px solid #e6e6e6;
+  position: fixed;
+  top: 60px;
+  left: 241px;
   width: 100%;
-  margin-bottom:20px;
-  .ahref-a{
-    margin-right: 5px;
-    display: inline-block;
-    padding:5px 10px;
-    border:1px solid $borderHighGray;
-    font-size: 14px;
-  }
-  .el-icon-close{
-    font-size:12px;
-  }
-  .active{
-    background: $greenBg;
-    color:$fontWhite;
-    border-color:$greenBg;
-    .scroll-tab-span::before{
-      content: '';
-      background: #fff;
-      display: inline-block;
-      width: 8px;
-      height: 8px;
-      border-radius: 50%;
-      position: relative;
-      margin-right: 6px;
-    }
-  }
-  /deep/ {
-    .el-scrollbar__bar {
-      bottom: 0px;
-    }
-    .el-scrollbar__wrap {
-      height: 40px;
-    }
-  }
-}
-.contextmenu {
-  width:105px;
-  margin: 0;
+  z-index: 1499;
   background: #fff;
-  z-index: 100;
-  position: absolute;
-  list-style-type: none;
-  padding: 5px 0;
-  border-radius: 4px;
-  font-size: 12px;
-  font-weight: 400;
-  color: #333;
-  box-shadow: 2px 2px 3px 0 rgba(0, 0, 0, .3);
-  li {
-    margin: 0;
-    padding: 7px 16px;
+  height:43px;
+  transition: left 0.15s;
+  .han-bao-bao{
+    position: absolute;
+    z-index: 1498;
+    font-size:22px;
+    top:10px;
     cursor: pointer;
-    &:hover {
-      background: #eee;
+    display: block;
+    text-align: center;
+    background: $fontWhite;
+    transition: background 0.15s;
+    &:hover{
+      background: $hanbaoHover;
+    }
+  }
+  .tagview-scroll-container {
+    white-space: nowrap;
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+    padding-left: 30px;
+    .el-scrollbar__wrap {
+      overflow-x: auto;
+    }
+    .ahref-a{
+      margin-right: 5px;
+      display: inline-block;
+      padding:5px 10px;
+      border:1px solid $borderHighGray;
+      font-size: 14px;
+    }
+    .el-icon-close{
+      font-size:12px;
+    }
+    .active{
+      background: $greenBg;
+      color:$fontWhite;
+      border-color:$greenBg;
+      .scroll-tab-span::before{
+        content: '';
+        background: #fff;
+        display: inline-block;
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        position: relative;
+        margin-right: 6px;
+      }
+    }
+  }
+  .contextmenu {
+    width:80px;
+    margin: 0;
+    background: #fff;
+    z-index: 100;
+    position: absolute;
+    list-style-type: none;
+    padding: 5px 0;
+    border-radius: 4px;
+    font-size: 12px;
+    font-weight: 400;
+    color: #333;
+    box-shadow: 2px 2px 3px 0 rgba(0, 0, 0, .3);
+    li {
+      margin: 0;
+      padding: 7px 16px;
+      cursor: pointer;
+      &:hover {
+        background: #eee;
+      }
     }
   }
 }

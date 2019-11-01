@@ -21,4 +21,20 @@ export default {
 </script>
 
 <style lang="scss">
+.el-main{
+  padding:0;
+}
+.app-wrapper{
+  padding:20px;
+  margin-top:100px;
+  overflow: hidden;
+}
+.el-header{
+  position: fixed;
+  width: 100%;
+  left: 0;
+  top: 0;
+  right: 0;
+  z-index: 1500;
+}
 </style>

@@ -1,18 +1,21 @@
 <template>
-  <div class="app-wrapper">
-    <el-menu
-      :default-active="$route.path"
-      class="el-menu-vertical-demo"
-      :collapse="false"
-      :unique-opened="true"
-    >
-      <ItemBar
-        v-for="item in routers"
-        :key="item.path"
-        :item="item"
-        :base-path="item.path"
-      />
-    </el-menu>
+  <div class="menu-wrapper">
+    <el-scrollbar :native="false">
+      <el-menu
+        :default-active="$route.path"
+        class="nav-el-menu-vertical"
+        :unique-opened="true"
+        :collapse="isCollapse"
+        :collapse-transition= 'false'
+      >
+        <ItemBar
+          v-for="item in routers"
+          :key="item.path"
+          :item="item"
+          :base-path="item.path"
+        />
+      </el-menu>
+    </el-scrollbar>
   </div>
 </template>
 
@@ -27,7 +30,27 @@ export default {
   computed: {
     routers() {
       return this.$store.getters.routers
+    },
+    isCollapse() {
+      return this.$store.getters.isCollapse
     }
   }
 }
 </script>
+<style lang="scss">
+  .menu-wrapper{
+    .el-menu{
+      border:0;
+      width:240px;
+      transition: 0.15s;
+    }
+    .el-scrollbar{
+      position: fixed;
+      top: 0;
+      bottom: 0;
+      padding-top: 60px;
+      transition: padding-top .3s;
+      border-right: 1px solid $borderLightGray;
+    }
+  }
+</style>
