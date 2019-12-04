@@ -2,7 +2,7 @@
   <div :class="'s-w ' + (isCollapse?'hide-nav-bar':'')">
     <el-scrollbar :native="false">
       <el-container>
-        <el-header>Header</el-header>
+        <AppHead />
         <el-container>
           <el-aside width="240px">
             <NavBar />
@@ -18,6 +18,7 @@
 </template>
 
 <script>
+import AppHead from './components/appHead'
 import NavBar from './components/navBar'
 import TagView from './components/tagView'
 import AppMain from './components/appMain'
@@ -25,6 +26,7 @@ import AppMain from './components/appMain'
 export default {
   name: 'Layout',
   components: {
+    AppHead,
     NavBar,
     AppMain,
     TagView

@@ -6,7 +6,7 @@
     >
       <template slot="title">
         <IconSvg :el="item.meta.el" :icon="item.meta.icon" />
-        <span slot="title">{{ item.meta.title }}</span>
+        <span slot="title" :title="item.meta.title">{{ item.meta.title }}</span>
       </template>
 
       <template v-for="child in item.children">
@@ -19,7 +19,7 @@
         <Linker v-else :url="resolvePath(child.path)" :key="resolvePath(child.path)">
           <el-menu-item :index="resolvePath(child.path)">
             <IconSvg :el="child.meta.el" :icon="child.meta.icon" />
-            <span slot="title">{{ child.meta.title }}</span>
+            <span slot="title" :title="child.meta.title">{{ child.meta.title }}</span>
           </el-menu-item>
         </Linker>
       </template>
@@ -28,7 +28,7 @@
     <Linker v-else :url="resolvePath(item.path)" :key="resolvePath(item.path)">
       <el-menu-item :index="resolvePath(item.path)">
         <IconSvg :el="item.meta.el" :icon="item.meta.icon" />
-        <span slot="title">{{ item.meta.title }}</span>
+        <span slot="title" :title="item.meta.title">{{ item.meta.title }}</span>
       </el-menu-item>
     </Linker>
   </div>
