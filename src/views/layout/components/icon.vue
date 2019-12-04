@@ -1,5 +1,5 @@
 <template>
-  <i v-if="el" :class="'el-icon-' + icon"></i>
+  <i v-if="el" :class="'el-icon-' + icon + ' menu-icon-i'"></i>
   <i v-else :class="'iconfont ' + icon"></i>
 </template>
 

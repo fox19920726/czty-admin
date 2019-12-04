@@ -68,8 +68,8 @@ export default {
     padding: 0 10px 0 10px !important;
   }
   .el-submenu {
-    .el-icon-location{
-      width:auto !important;
+    .menu-icon-i{
+      width:18px !important;
     }
     .el-submenu__icon-arrow{
       display: none;
