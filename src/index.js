@@ -1,3 +1,9 @@
+// iconfont
+import './iconfont/iconfont.css'
+
+// reset css
+import '@/styles/index.scss'
+
 // 主框架引入
 import Vue from 'vue'
 
@@ -22,14 +28,8 @@ import 'element-ui/lib/theme-chalk/index.css'
 // 路由视图文件
 import App from './App.vue'
 
-// mock模块
+// mock模块 提交的时候请关闭mock
 import './mock'
-
-// iconfont
-import './iconfont/iconfont.css'
-
-// reset css
-import '@/styles/index.scss'
 
 Vue.prototype.qs = QS;
 Vue.prototype.$axios = axios;

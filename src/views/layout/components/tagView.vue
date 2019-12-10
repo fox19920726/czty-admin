@@ -122,7 +122,6 @@ export default {
       })
     },
     openMenu(tag, e) {
-      console.log('e:', e)
       this.left = e.clientX - 260
       this.top = e.clientY - 40
       this.visible = true
@@ -134,7 +133,7 @@ export default {
     refreshSelectedTag(view) {
       this.$store.dispatch('delCachedView', view).then(() => {
         this.$nextTick(() => {
-          this.$router.replace({ path: `/redirect${this.$route.fullPath}` })
+          this.$router.replace({ path: `/redirect${view.fullPath}` })
         })
       })
     },
@@ -142,11 +141,8 @@ export default {
       this.$router.push(this.selectedTag)
       this.$store.dispatch('delOthersViews', this.selectedTag)
     },
-    closeAllTags(view) {
+    closeAllTags() {
       this.$store.dispatch('delAllViews').then(({ visitedViews }) => {
-        if (view.path === '/dashboard') {
-          return
-        }
         this.toLastView(visitedViews)
       })
     }

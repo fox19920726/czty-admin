@@ -1,19 +1,50 @@
 import Menu from '@/views/menu/menu'
 import Login from '@/views/login/login'
 import Dashboard from '@/views/dashboard/dashboard'
+import RedirectPage from '@/views/redirectPage/index'
 import Layout from '@/views/layout/layout'
 
 const routes = [
+  // 首页在左侧导航中显示
   {
     path: '/',
     component: Layout,
     redirect: 'dashboard',
-    hidden: true,
+    name: '0999',
+    meta: { title: '首页111', icon: 'location', el: true },
     children: [
       {
         path: 'dashboard',
         component: Dashboard,
-        name: '09'
+        name: '09',
+        meta: { title: '首页', icon: 'location', el: true }
+      }
+    ]
+  },
+  // 首页不在左侧导航中显示
+  // {
+  //   path: '/',
+  //   component: Layout,
+  //   redirect: 'dashboard',
+  //   hidden: true,
+  //   children: [
+  //     {
+  //       path: 'dashboard',
+  //       component: Dashboard,
+  //       name: '09'
+  //     }
+  //   ]
+  // },
+  {
+    path: '/redirect',
+    component: Layout,
+    hidden: true,
+    children: [
+      {
+        path: '/redirect/:path*',
+        name: 'redirect',
+        hidden: true,
+        component: RedirectPage
       }
     ]
   },

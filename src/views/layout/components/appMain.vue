@@ -23,6 +23,7 @@ export default {
 <style lang="scss">
 .el-main{
   padding:0;
+  transition: all .15s;
 }
 .app-wrapper{
   padding:20px;

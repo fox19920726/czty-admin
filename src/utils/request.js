@@ -1,6 +1,5 @@
 import { Message } from 'element-ui'
 import axios from 'axios'
-// import router from '@/router'
 import { getToken } from './auth'
 
 const isProduction = process.env.NODE_ENV === 'production'
@@ -19,7 +18,6 @@ service.interceptors.request.use(
     if (token) {
       config.headers['X-Token'] = token
     }
-    // console.log('request-config:', config)
     return config
   },
   (error) => {
@@ -28,12 +26,9 @@ service.interceptors.request.use(
   }
 )
 
+// 访问接口成功后的code码需要全公司统一，用来统一处理每个code对应的策略
 service.interceptors.response.use(
-  (response) => {
-    console.log('response-config:', response)
-    // 访问接口成功后的code码需要全公司统一，用来统一处理每个code对应的策略
-    return response
-  },
+  (response) => response,
   (error) => {
     const response = error.response
     const status = response.status

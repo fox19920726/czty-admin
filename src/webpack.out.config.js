@@ -4,10 +4,11 @@ module.exports = {
     open: false,
     // 配置代理ip
     proxy: {
-      '**':'http://192.168.110.210:8080'
+      '**':'' // http://192.168.110.200:8080 写上代理地址，就会到真实的接口去，否则走node mock数据
     },
     // 端口号默认3000，如果跟其他项目冲突，可以重新配端口号
     // port: '3001'
+    after:require('./mock/mockServer.js')
   },
   url:{
     // 最后发布时候访问的接口地址

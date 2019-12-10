@@ -44,8 +44,9 @@ export default {
   background: $headerBg;
 }
 .el-aside{
+  z-index: 1499;
   width:240px !important;
-  transition: width 0.15s;
+  transition: width .15s;
 }
 .s-w{
   height:100%;
@@ -57,14 +58,16 @@ export default {
   overflow-x: hidden;
 }
 .hide-nav-bar{
+  .menu-wrapper{
+    .el-scrollbar{
+      width: 36px !important;
+    }
+  }
   .el-aside{
     width:36px !important;
   }
   .wrapper-tag{
     left:37px !important;
-  }
-  .nav-el-menu-vertical{
-    width: 36px;
   }
   .el-submenu > .el-submenu__title {
     padding: 0 10px 0 10px !important;

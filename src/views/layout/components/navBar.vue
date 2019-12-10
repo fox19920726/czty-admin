@@ -42,15 +42,15 @@ export default {
     .el-menu{
       border:0;
       width:240px;
-      transition: 0.15s;
     }
     .el-scrollbar{
+      width: 240px;
       position: fixed;
       top: 0;
       bottom: 0;
       padding-top: 60px;
-      transition: padding-top .3s;
       border-right: 1px solid $borderLightGray;
+      transition: width .15s;
     }
   }
 </style>
