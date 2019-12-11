@@ -25,7 +25,7 @@ const asynRoutes = {
   actions: {
     getAsynRoutes({ commit }) {
       return getRouters().then((res) => {
-        const data = res.data.data
+        const { data } = res.data
         const forchMenu = (arr) => {
           arr.map((currentValue) => {
             currentValue.component = componentsList[currentValue.component]

@@ -18,11 +18,11 @@ const user = [
     // 获取用户token
     url: '/login',
     type: 'post',
-    response: () => list
+    response: list
   }, {
     url: '/user/info',
     type: 'get',
-    response: () => list
+    response: list
   }
 ]
 

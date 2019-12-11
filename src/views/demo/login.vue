@@ -60,11 +60,11 @@ export default {
     submitForm() {
       this.$refs.loginForm.validate((valid) => {
         if (valid) {
-          const name = this.ruleForm.name
-          const password = this.ruleForm.password
+          const { name } = this.ruleForm
+          const { password } = this.ruleForm
 
           login(name, password).then((response) => {
-            const data = response.data.data
+            const { data } = response.data
 
             this.$store.commit('SET_TOKEN', {
               token: data.token

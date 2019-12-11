@@ -36,7 +36,7 @@ const globals = [{
   // 获取用户token
   url: '/getRouters',
   type: 'get',
-  response: () => list
+  response: list
 }]
 
 export default globals

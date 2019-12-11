@@ -10,24 +10,25 @@ function registerRoutes(app) {
   const { default: mocks } = require('./index.js')
   for (const mock of mocks) {
     app[mock.type](mock.url, mock.response)
+    // eslint-disable-next-line no-underscore-dangle
     mockLastIndex = app._router.stack.length
   }
   const mockRoutesLength = Object.keys(mocks).length
   return {
-    mockRoutesLength: mockRoutesLength,
+    mockRoutesLength,
     mockStartIndex: mockLastIndex - mockRoutesLength
   }
 }
 
 function unregisterRoutes() {
-  Object.keys(require.cache).forEach(i => {
+  Object.keys(require.cache).forEach((i) => {
     if (i.includes(mockDir)) {
       delete require.cache[require.resolve(i)]
     }
   })
 }
 
-module.exports = app => {
+module.exports = (app) => {
   // es6 polyfill node模块不支持import方法
   require('@babel/register')
 
@@ -38,28 +39,29 @@ module.exports = app => {
     extended: true
   }))
 
-  const mockRoutes = registerRoutes(app)
-  let mockRoutesLength = mockRoutes.mockRoutesLength
-  let mockStartIndex = mockRoutes.mockStartIndex
+  let mockRoutes = registerRoutes(app)
+  let { mockRoutesLength } = mockRoutes
+  let { mockStartIndex } = mockRoutes
 
   // watch files, hot reload mock server
   chokidar.watch(mockDir, {
     ignored: /mockServer/,
     ignoreInitial: true
-  }).on('all', (event, path) => {
+  }).on('all', (event, paths) => {
     if (event === 'change' || event === 'add') {
       try {
         // remove mock routes stack
+        // eslint-disable-next-line no-underscore-dangle
         app._router.stack.splice(mockStartIndex, mockRoutesLength)
 
         // clear routes cache
         unregisterRoutes()
 
-        const mockRoutes = registerRoutes(app)
+        mockRoutes = registerRoutes(app)
         mockRoutesLength = mockRoutes.mockRoutesLength
         mockStartIndex = mockRoutes.mockStartIndex
 
-        console.log(chalk.magentaBright(`\n > Mock Server hot reload success! changed  ${path}`))
+        console.log(chalk.magentaBright(`\n > Mock Server hot reload success! changed  ${paths}`))
       } catch (error) {
         console.log(chalk.redBright(error))
       }

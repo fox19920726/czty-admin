@@ -28,11 +28,11 @@ const user = {
   },
   actions: {
     setUserInfoAction({ commit }, info) {
-      const userId = info.userId
-      const token = info.token
-      const userName = info.userName
-      const roleId = info.roleId
-      const roleName = info.roleName
+      const { userId } = info
+      const { token } = info
+      const { userName } = info
+      const { roleId } = info
+      const { roleName } = info
 
       commit('SET_TOKEN', token)
       commit('SET_USERNAME', userName)

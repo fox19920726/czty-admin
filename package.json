@@ -6,7 +6,8 @@
   "scripts": {
     "dev": "czty-build dev",
     "start": "czty-build start",
-    "pub": "czty-build pub"
+    "pub": "czty-build pub",
+    "lint": "eslint --fix --quiet --format './node_modules/eslint-friendly-formatter/index.js' --ext .js,.vue src"
   },
   "repository": {
     "type": "git",
@@ -20,8 +21,13 @@
   "homepage": "https://github.com/fox19920726/czty-admin#readme",
   "devDependencies": {
     "@babel/register": "^7.7.4",
-    "czty-eslint": "0.0.6",
-    "czty-script": "^0.5.0"
+    "czty-script": "^0.5.4",
+    "husky": "^3.1.0"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "npm run lint"
+    }
   },
   "dependencies": {
     "autoprefixer": "^9.6.1",
@@ -67,10 +73,11 @@
       "no-tabs": 0,
       "prefer-rest-params": 0,
       "import/no-unresolved": 0,
+      "no-restricted-syntax": 0,
       "no-param-reassign": 0,
-      "prefer-destructuring": 0,
-      "linebreak-style": 0,
-      "no-restricted-syntax": 0
+      "import/no-extraneous-dependencies": 0,
+      "global-require": 0,
+      "prefer-destructuring": 1
     }
   },
   "postcss": {

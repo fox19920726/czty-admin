@@ -1,3 +1,3 @@
 window.g = {
-  BASE_URL: ""
+  BASE_URL: ''
 }

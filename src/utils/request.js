@@ -30,9 +30,9 @@ service.interceptors.request.use(
 service.interceptors.response.use(
   (response) => response,
   (error) => {
-    const response = error.response
-    const status = response.status
-    const errmsg = response.data.errmsg
+    const { response } = error
+    const { status } = response
+    const { errmsg } = response.data
     if (status === 401) {
       // 未登录状态下应该：1、提示未登录 2、删除本地cookie的token记录 3、跳转至登陆界面
       Message.error(errmsg)
