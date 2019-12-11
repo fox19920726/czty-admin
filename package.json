@@ -21,14 +21,18 @@
   "homepage": "https://github.com/fox19920726/czty-admin#readme",
   "devDependencies": {
     "@babel/register": "^7.7.4",
-    "czty-script": "^0.5.4",
     "czty-eslint": "0.0.7",
-    "husky": "^3.1.0"
+    "czty-script": "^0.5.4",
+    "husky": "^3.1.0",
+    "lint-staged": "^10.0.0-beta.7"
   },
   "husky": {
     "hooks": {
-      "pre-commit": "npm run lint"
+      "pre-commit": "lint-staged"
     }
+  },
+  "lint-staged": {
+    "src/**/*.js,.vue":["npm run lint", "git add"]
   },
   "dependencies": {
     "autoprefixer": "^9.6.1",
