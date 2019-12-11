@@ -26,7 +26,6 @@ import AppMain from './components/appMain'
 export default {
   name: 'Layout',
   components: {
-          AppHead,
     NavBar,
     AppMain,
     TagView
