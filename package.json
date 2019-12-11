@@ -32,7 +32,7 @@
     }
   },
   "lint-staged": {
-    "src/**/*.js,.vue":["npm run lint", "git add"]
+    "src/**/*.js,.vue":"npm run lint"
   },
   "dependencies": {
     "autoprefixer": "^9.6.1",
